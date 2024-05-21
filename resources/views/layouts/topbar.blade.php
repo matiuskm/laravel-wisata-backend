@@ -54,29 +54,6 @@
                 </div>
             </form>
 
-            <div class="dropdown d-inline-block d-lg-none ms-2">
-                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="notification icon">
-                    <i class="mdi mdi-magnify"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                    aria-labelledby="page-header-search-dropdown">
-
-                    <form class="p-3">
-                        <div class="form-group m-0">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search ..."
-                                    aria-label="Recipient's username">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit"><i
-                                            class="mdi mdi-magnify"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
             <div class="dropdown d-none d-lg-inline-block">
                 <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen"
                     aria-label="fullscreen button">
@@ -107,10 +84,16 @@
                     document.getElementById('logout-form').submit();"><i
                             class="bx bx-power-off font-size-17 align-middle me-1 text-danger"></i>
                         {{ __('Logout') }} </a>
-                    <form id="logout-form" action="" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </div>
+            </div>
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect"
+                    aria-label="rightbar toggle">
+                    <i class="mdi mdi-cog-outline"></i>
+                </button>
             </div>
         </div>
     </div>

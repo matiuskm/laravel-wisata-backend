@@ -11,11 +11,29 @@
 
                 <li>
                     <a href="/" class="waves-effect">
-                        <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">1</span>
+                        <i class="ti-home"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                \
+                <li class="menu-title">Masters</li>
+                <li>
+                    <a href="{{ route('users.index') }}" class="waves-effect">
+                        <i class="ti-user"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('categories.index') }}" class="waves-effect">
+                        <i class="ti-ticket"></i>
+                        <span>Categories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('products.index') }}" class="waves-effect">
+                        <i class="ti-ticket"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
