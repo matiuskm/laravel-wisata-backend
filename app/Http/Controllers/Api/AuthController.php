@@ -4,17 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            $response = "";
+            foreach ($validator->errors()->all() as $error) {
+                $response .= $error . ' ';
+            }
+
+            return response()->json(['error' => $response], 400);
+        }
 
         $user = User::where('email', $request->email)->where('status', 'active')->first();
 

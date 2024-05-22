@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,7 @@ class ProductController extends Controller
     // store
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
@@ -31,6 +32,15 @@ class ProductController extends Controller
             'criteria' => 'required|in:perorangan,rombongan',
             'favorite' => 'required|boolean',
         ]);
+
+        if ($validator->fails()) {
+            $response = "";
+            foreach ($validator->errors()->all() as $error) {
+                $response .= $error . ' ';
+            }
+
+            return response()->json(['error' => $response], 400);
+        }
 
         try {
             $data = $request->all();
@@ -64,7 +74,7 @@ class ProductController extends Controller
     // update
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
@@ -74,6 +84,15 @@ class ProductController extends Controller
             'criteria' => 'required|in:perorangan,rombongan',
             'favorite' => 'required|boolean',
         ]);
+
+        if ($validator->fails()) {
+            $response = "";
+            foreach ($validator->errors()->all() as $error) {
+                $response .= $error . ' ';
+            }
+
+            return response()->json(['error' => $response], 400);
+        }
 
         $product = Product::find($id);
 
