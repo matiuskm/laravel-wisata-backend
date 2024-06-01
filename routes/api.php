@@ -11,6 +11,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::apiResource('/products', ProductController::class);
     Route::apiResource('/categories', 'App\Http\Controllers\Api\CategoryController');
+    Route::apiResource('/orders', 'App\Http\Controllers\Api\OrderController');
 });
 
 // login
